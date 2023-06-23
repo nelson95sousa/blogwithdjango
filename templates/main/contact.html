@@ -1,0 +1,84 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/main/contact.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <!-- CAROUSEL -->
+    <div class="main-div">
+        <h1 class= "blog-title"><strong>Contact</strong></h1>
+        <h4 class="blog-title-2">We look forward to hearing from you.</h4>
+        {% if messages %}
+            <ul class="messages msg-cmt-submited">
+                {% for message in messages %}
+                    <p>{{ message|safe }}</p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div class="container ctn-contact">
+        <div class="row">
+            <div class="col col-12 col-md-6 contact-form">
+                <form class="register-form" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                        <div class="alert alert-message">
+                            
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                
+                                    <li>{{ error }}</li>
+                                
+                                {% endfor %}
+                            {% endfor %}
+                            
+                        </div>
+                    {% endif %}
+
+                    <div class="input-row">
+                        <label for="first_name" class="register-input">First name</label>
+                        <p>{{form.first_name}}</p>
+                    </div>
+
+                    <div class="input-row">
+                        <label for="last_name" class="register-input">Last name</label>
+                        <p>{{form.last_name}}</p>
+                    </div>
+
+                    <div class="input-row">
+                        <label for="email" class="register-input">Email</label>
+                        <p>{{form.email}}</p>
+                    </div>
+
+                    <div class="input-row">
+                        <label for="email" class="register-input">Message</label>
+                        <p>{{form.message}}</p>
+                    </div>
+
+                    <div>
+                        {{form.botcatcher}}
+                    </div>
+                
+                    <button class="btn btn-submit register-submit" type="submit">Send message</button>
+                </form>    
+            </div>
+
+            <div class="col col-12 col-md-6">
+                <h5>Contact us directly:</h5>
+                <ul class="contact-list">
+                    <li><p>blogwithdjango@gmail.com</p></li>
+                </ul>
+            </div>
+        </div> 
+    </div>
+    
+{% endblock %}

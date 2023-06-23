@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Dlete Post
+{% endblock %}
+
+{% block body %}
+
+<div class="main-div">
+    <h1 class= "main-title"><strong>Delete Post</strong></h1>
+</div>
+
+    <div class="container ctn-register">
+
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete the post <strong>{{post.title}}</strong>?</p>
+            
+            <input class="btn btn-submit update-submit" type="submit" value="delete">
+        
+            <a class="btn btn-submit update-cancel" href="{% url 'blog:edit_post' post.id %}">cancel</a>
+        </form>
+    
+    </div>
+{% endblock %}

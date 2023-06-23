@@ -1,0 +1,47 @@
+.main-div{
+    background-color: var(--pale_green);
+    height: 150px;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.blog-title{
+    color: var(--white);
+    font-size: 6vw;
+}
+
+@media screen and (max-width: 1024px) {
+    .blog-title{
+        zoom: 200%;
+    }
+    .ctn-post{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .ctn-comments-title{
+        padding-left: 50px;
+    }
+    .ctn-comments{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .col-prof-img{
+        width: 30%;
+    }
+
+    .col-cmt-2{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 480px) {
+.col-prof-img{
+    width: auto;
+}
+
+.col-cmt-2{
+    width: auto;
+}
+}

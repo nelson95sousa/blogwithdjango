@@ -1,0 +1,28 @@
+.main-div{
+    background-color: var(--pale_green);
+    height: 300px;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.blog-title{
+    color: var(--white);
+    font-size: 6vw;
+}
+
+.card-img-top{
+    height: 15vw;
+    width: auto;
+    object-fit:contain;
+}
+
+@media screen and (max-width: 1024px) {
+    .blog-title{
+        zoom: 200%;
+    }
+    .ctn-blog{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+

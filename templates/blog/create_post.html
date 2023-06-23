@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Create Post
+{% endblock %}
+
+{% block body %}
+<div class="ctn-post container">
+
+    <form class="create-post-form" enctype="multipart/form-data" method="post">
+        
+        {% csrf_token %} 
+        {{form.media}}
+
+        {% if form.errors %}
+            <div class="alert alert-message">
+                
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    
+                        <li>{{ error }}</li>
+                    
+                    {% endfor %}
+                {% endfor %}
+                
+            </div>
+        {% endif %}
+
+        <div class="input-row">
+            <label for="title" class="register-input" >Title:</label>
+            <p>{{form.title}}</p>
+        </div>
+
+        <div class="input-row">
+            <label for="label" class="register-input" >Label (max 100 characteres)</label>
+            <p>{{form.label}}</p>
+        </div>
+
+        <div class="input-row">
+            <label for="text" class="register-input" >Text:</label>
+            <p>{{form.text}}</p>
+        </div>
+
+        <div class="input-row">
+            <label for="post_image" class="register-input" >Image:</label>
+            <p>{{form.post_image}}</p>
+        </div>
+
+        <div class="input-row">
+            <label for="date" class="register-input" >Text:</label>
+            <p>{{form.date}}</p>
+        </div>
+
+        <button class="btn btn-submit update-submit" type="submit">publish</button>
+
+        <a class="btn btn-submit update-cancel" href="{% url 'blog:index' %}">cancel</a>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Blog with Django
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/main/index.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="main-div">
+        <div class="row">
+            <div class="col col-12 col-md-6">
+                <h1 id="title_1"><strong>Blog</strong></h1>
+                <h3 id="title_2">With Django</h3>
+            </div>
+            <div class="col col-12 col-md-6">
+                <div class="row row-txt-1">
+                    <h5>Blog With Django was built using...</h5>
+                </div>
+                <div class="row row-logos">
+                    <div class="col col-1"></div>
+                    <div class="col col-2">
+                        <img class="img-logo responsive" id="dj-logo" src="{% static 'images/django-logo.png'%}" alt="">
+                    </div>
+                    <div class="col col-2">
+                        <img class="img-logo responsive" id="pt-logo" src="{% static 'images/python-logo.png'%}" alt="">
+                    </div>
+                    <div class="col col-2">
+                        <img class="img-logo responsive" id="html-logo" src="{% static 'images/HTML5_logo.png'%}" alt="">
+                    </div>
+                    <div class="col col-2">
+                        <img class="img-logo responsive" id="css-logo" src="{% static 'images/css-logo.png'%}" alt="">
+                    </div>
+                    <div class="col col-2">
+                        <img class="img-logo responsive" id="js-logo" src="{% static 'images/javascript-logo.png'%}" alt="">
+                    </div>
+                    <div class="col col-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-div">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="container">
+                    {% for post in post_list %}
+                        {% if forloop.first%}
+                            <div class="carousel-item active" data-bs-interval="2000">
+                                <div class="card mb-8">
+                                    <div class="row g-0">
+                                        <div class="col-md-4 post-img">
+                                            <a href="{% url 'blog:post' post.id %}"><img src="{{post.post_image.url}}" class="img-fluid rounded" alt="..."></a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{post.title}}</h5>
+                                                <p class="card-text">{{post.label}}</p>
+                                                <p class="card-text"><small class="text-muted">{{post.date}}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="carousel-item" data-bs-interval="2000">
+                                <div class="card mb-8">
+                                    <div class="row g-0">
+                                        <div class="col-md-4 post-img">
+                                            <a href="{% url 'blog:post' post.id %}"><img src="{{post.post_image.url}}" class="img-fluid rounded" alt="..."></a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{post.title}}</h5>
+                                                <p class="card-text">{{post.label}}</p>
+                                                <p class="card-text"><small class="text-muted">{{post.date}}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+<!-- ADDITIONAL JAVASCRIPT -->
+<script src="{% static 'JS/main/index.js' %}" ></script>
+{% endblock %}

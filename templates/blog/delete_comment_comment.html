@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Delete Comment
+{% endblock %}
+
+{% block body %}
+
+<div class="main-div">
+    <h1 class= "main-title"><strong>Delete Comment of Comment</strong></h1>
+</div>
+
+    <div class="container ctn-register">
+
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete the comment "<strong>{{comment.text}}</strong>" from <strong>{{comment.user.get_full_name}}</strong>, for comment <strong>{{comment.comment}}</strong>, in post <strong>{{comment.blogPost}}</strong>?</p>
+            
+            <input class="btn btn-submit update-submit" type="submit" value="delete">
+        
+            <a class="btn btn-submit update-cancel" href="{% url 'blog:approve_comments' comment.blogPost.id %}">cancel</a>
+        </form>
+    
+    </div>
+{% endblock %}

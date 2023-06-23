@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/accounts/login.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="main-div">
+    <h1 class= "main-title"><strong>Login</strong></h1>
+</div>
+
+<div class="container ctn-login">
+        
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <p{% if message.tags %} class="message-tag"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message|safe }}
+                </p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <!-- REGISTRATION FORM -->
+    <form class="login-form"  method="post">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div class="alert alert-message">
+                {% for error in form.non_field_errors %}
+                    
+                    <li>{{error}}</li>
+                    
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="input-row">
+            <label for="email" class="login-input">email</label>
+            <p>{{form.username}}</p>
+        </div>
+
+        <div class="input-row">
+            <label for="password" class="login-input">password</label>
+            <p>{{form.password}}</p>
+        </div>
+
+        {{form.botcatcher}}
+        
+        <button class="btn btn-submit login-submit" type="submit">login</button>
+        <a class="nav-link" href="{% url 'accounts:register' %}">or create account</a>
+        <a class="nav-link" href="{% url 'accounts:password_reset' %}">forgot password</a>
+    </form>
+</div>
+
+{% endblock %}

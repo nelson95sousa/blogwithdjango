@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Edit Post
+{% endblock %}
+
+{% block body %}
+
+<div class="main-div">
+    <h1 class= "main-title"><strong>Edit Post</strong></h1>
+</div>
+
+    <div class="container ctn-edit-post">
+
+        <!-- UPDATE FORM -->
+        <form class="edit-post-form" enctype="multipart/form-data" method="post">
+            {% csrf_token %} 
+            {{form.media}}
+
+            {% if form.errors %}
+                <div class="alert alert-message">
+                    
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                        
+                            <li>{{ error }}</li>
+                        
+                        {% endfor %}
+                    {% endfor %}
+                    
+                </div>
+            {% endif %}
+
+            <div class="input-row">
+                <label for="title" class="register-input" >Title</label>
+                <p>{{form.title}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="label" class="register-input" >Label (max 100 characteres)</label>
+                <p>{{form.label}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="text" class="register-input" >Text:</label>
+                <p>{{form.text}}</p>
+            </div>
+    
+            <div class="input-row">
+                
+                <label for="post_image">Picture:</label>
+                <p>{{form.post_image}}</p>
+
+            </div>
+    
+            <div class="input-row">
+                <label for="date" class="register-input" >Publish Date:</label>
+                <p>{{form.date}}</p>
+            </div>
+
+            <br>
+            <button class="btn btn-submit update-submit" type="submit">publish</button>
+
+            <a class="btn btn-submit update-cancel" href="{% url 'blog:index' %}">cancel</a>
+
+            <a class="nav-link" href="{% url 'blog:delete_post' post.id %}">delete post</a>
+
+        </form>
+        
+
+        
+    </div>
+    
+    
+
+<script src="{% static 'JS/edit_profile.js' %}" defer></script>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/main/about.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <!-- CAROUSEL -->
+    <div class="main-div">
+        <h1 class= "blog-title"><strong>About</strong></h1>
+    </div>
+
+    <!-- CONTAINER 1 -->
+    <div class="container ctn-about-one">
+
+        <div class="row">
+            <div class="col col-12 col-md-6 col-about-img">
+                <img class="about-img-one" src="{% static 'logo/logo_2.jpg' %}" alt="">
+            </div>
+            <div class="col col-12 col-md-6 col-text-one">
+                
+                <!-- QUOTATION MARKS -->
+                <svg class="quotation-mark" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-quote" viewBox="2.5 0 16 16">
+                    <!-- viewBox - the 2.5 makes the '' to align on the left with text bellow -->
+                    <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                </svg>
+                
+                <h4 class="about-text-one"><i>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</i></h4>
+                
+                <h6 class="author-name"><strong>BLOG WITH DJANGO</strong></h6>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ctn-about-two">
+        <div class="container">
+            <div class="row row-about-one">
+                <div class="col col-12 col-md-3 col-text-title"><h6>OUR STORY</h6></div>
+
+                <div class="col col-12 col-md-9 col-text-two">
+
+                    <h4 class="about-text-two"><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</strong></h4>
+                    
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacinia pharetra laoreet. Sed consequat quam at nisi pharetra laoreet. Vestibulum sodales feugiat aliquam. Nam in viverra libero. Suspendisse in ligula id ex consequat feugiat sed cursus ante. Phasellus a elit hendrerit, efficitur leo ac, condimentum ligula. Vestibulum feugiat nunc vitae felis imperdiet vulputate. Proin volutpat justo vitae dolor pretium, sit amet pharetra eros pulvinar. Sed urna odio, luctus nec tincidunt ac, gravida pretium turpis. Praesent lectus nulla, cursus quis velit sed, efficitur aliquet dolor.</p>
+                    <p>Integer cursus, augue ut blandit scelerisque, ligula neque accumsan nunc, sit amet pulvinar lacus dui non libero. Aliquam erat volutpat. Integer fermentum tincidunt porta. Nam a justo in tellus hendrerit tristique. Sed quis ultrices metus, sit amet auctor ipsum. Morbi tincidunt semper metus, sed cursus lectus sagittis ut. Nulla id lorem rutrum, dictum nisi eget, pharetra lorem. Donec lacus enim, sodales eu mi quis, tristique sodales leo. Nulla facilisi. In pellentesque quam eu leo dapibus, et iaculis erat convallis. Integer rhoncus nisl non purus fringilla mattis. Vestibulum quis massa vitae risus viverra egestas eu non purus. Ut congue justo at nisi sagittis faucibus.</p>
+                    <p>Nunc ut porttitor lorem, ac vehicula turpis. Integer vel eros ornare, aliquam quam vitae, sagittis urna. Praesent vulputate purus sit amet nisl porttitor, eu porta diam rutrum. Phasellus sapien nisi, fringilla nec metus in, sollicitudin pulvinar nibh. Praesent viverra massa ut diam rutrum, at commodo sem lobortis. Vivamus ac nunc dolor. Integer in iaculis augue. Cras interdum condimentum hendrerit. Aenean eu quam urna. Duis turpis orci, tristique sit amet tincidunt sed, molestie ac odio. Sed vel pharetra felis. Suspendisse potenti. Proin sodales neque et dui ornare, non bibendum diam aliquam. Cras pharetra, lectus a pharetra sodales, magna velit mollis lectus, eget blandit enim nibh quis massa. Nullam et elit nec justo vehicula bibendum.</p>
+                    <p>Sed aliquet pellentesque odio sit amet pulvinar. Nulla posuere condimentum libero non finibus. Phasellus in nulla euismod, mattis est in, ultrices diam. Nullam consequat sapien nunc, et tempus orci aliquam eu. Quisque ac dapibus nisi, a gravida felis. Maecenas ac nibh quis massa pretium hendrerit. In hac habitasse platea dictumst. Vestibulum ultrices, orci a sagittis pulvinar, ipsum urna ullamcorper magna, a maximus lorem risus vitae nunc. Donec sed dignissim libero, vel tempus est. Cras eget velit ac felis pulvinar fermentum. Cras facilisis sit amet justo et vehicula. Donec tempus pellentesque dui, in finibus diam gravida non. Etiam scelerisque interdum dolor, id rutrum ante volutpat id.</p>
+                    <p>Vestibulum eu magna elit. Morbi faucibus euismod urna, eget molestie orci ultrices nec. Pellentesque dictum, dolor ac accumsan fringilla, dolor orci vulputate leo, non lobortis risus purus ac felis. Quisque eu risus lacinia, faucibus nulla in, tristique mi. Quisque maximus justo orci, vel facilisis libero iaculis eget. Sed eu sagittis nibh. Mauris faucibus hendrerit sem mattis finibus. Nulla congue accumsan dui eget varius. Phasellus eget dui in tortor tempus posuere eget quis erat. Maecenas ut mauris tellus. Sed metus ligula, scelerisque quis nibh in, porta maximus justo. Duis malesuada gravida aliquam.</p>
+                </div>
+            </div>
+            
+            <!-- VALUES ROW -->
+            <div class="row values-row">
+                
+                <div class="col col-12 col-md-4">
+                    
+                    <!-- PERSON -->
+                    <svg class="values-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-check-fill" viewBox="-7.5 -7 30 30">
+                        <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+
+                    <h4>Lorem ipsum</h4>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+
+                <div class="col col-12 col-md-4">
+                    
+                    <!-- EYE -->
+                    <svg class="values-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-eye" viewBox="-7 -7.5 30 30">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                    </svg>
+                    
+                    <h4>Lorem ipsum</h4>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+                
+                <div class="col col-12 col-md-4">
+                    
+                    <!-- QUESTION MARK -->
+                    <svg class="values-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-question" viewBox="-7 -7 30 30">
+                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                    </svg>
+                    
+                    <h4>Lorem ipsum</h4>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

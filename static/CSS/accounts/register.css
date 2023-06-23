@@ -1,0 +1,46 @@
+/* REGISTER */
+
+.main-div{
+    background-color: var(--pale_green);
+    height: 300px;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.main-title{
+    color: var(--white);
+    font-size: 6vw;
+}
+
+.ctn-register{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color:var(--pale_green);
+}
+
+.register-form{
+    padding-left: 44px;
+}
+
+.register-submit{
+    color: var(--white);
+    background-color: var(--dark_green);
+    border: none;
+    }
+   
+#id_username,#id_first_name,#id_last_name,#id_email,
+#id_password1,#id_password2,#id_birth_date{
+    width: 200px;
+    color: var(--pale_green);
+    border-radius: 4px;
+    border: 1px solid var(--pale_green);
+}
+
+#id_username:focus,#id_first_name:focus, 
+#id_last_name:focus, #id_email:focus,
+#id_password1:focus,#id_password2:focus, #id_birth_date:focus{
+    outline: none;
+    border: 1px solid var(--pale_green);
+    background-color: var(--white);
+    
+}

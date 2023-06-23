@@ -1,0 +1,53 @@
+.main-div{
+    background-color: var(--pale_green);
+    height: 300px;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.main-title{
+    color: var(--white);
+    font-size: 6vw;
+}
+
+.ctn-login{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color:var(--pale_green);
+        padding-left: 57px;
+    }
+
+    .login-submit{
+        color: var(--white);
+        background-color: var(--dark_green);
+        border: none;
+        }
+    
+    #id_username,
+    #id_password{
+        width: 200px;
+        color: var(--pale_green);
+        border-radius: 4px;
+        border: 1px solid var(--pale_green);
+    }
+
+    #id_username:focus,#id_password:focus{
+        outline: none;
+        border: 1px solid var(--pale_green);
+        background-color: var(--white);
+    }
+
+    .alert-message{
+        display: block;
+        width: fit-content;
+    }
+
+    .alert-message{
+        background-color: rgb(255, 231, 146, 0.5);
+    }
+    .message-tag{
+        color: var(--dark_green);
+    }
+    .messages{
+        padding-left: 0px;
+    }

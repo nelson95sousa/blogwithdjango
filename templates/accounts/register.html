@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/accounts/register.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="main-div">
+        <h1 class= "main-title"><strong>Create account</strong></h1>
+    </div>
+        
+    <div class="container ctn-register">
+
+        <form class="register-form" enctype="multipart/form-data" method="post">
+            {% csrf_token %} 
+
+            {% if form.errors %}
+                <div class="alert alert-message">
+                    
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                        
+                            <li>{{ error }}</li>
+                        
+                        {% endfor %}
+                    {% endfor %}
+                    
+                </div>
+            {% endif %}
+
+            <div class="input-row">
+                <label for="first_name" class="register-input" >first name</label>
+                <p>{{form.first_name}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="last_name" class="register-input">last name</label>
+                <p>{{form.last_name}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="email" class="register-input">email</label>
+                <p>{{form.email}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="password1" class="register-input">password</label>
+                <p>{{form.password1}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="password2" class="register-input">confirm password</label>
+                <p>{{form.password2}}</p>
+            </div>
+            <div>
+                {{form.botcatcher}}
+            </div>
+            
+            <button class="btn btn-submit register-submit" type="submit">create account</button>
+        </form>
+    </div>
+
+{% endblock %}

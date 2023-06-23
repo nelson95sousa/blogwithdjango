@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load blog_template_tags %}
+
+{% block title %}
+Comments
+{% endblock %}
+
+{% block body %}
+<div class="main-div">
+    <h1 class= "main-title"><strong>Approve Comments</strong></h1>
+</div>
+
+    <div class="ctn ctn-blog">
+        <a class="btn btn-submit submit-comment" href="{% url 'blog:index' %}">back</a>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for post in blogpost %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <p class="card-text">{{ post.label|safe|striptags }}</p>
+                            <a href="{% url 'blog:approve_comments' post.id %}" class="nav-link">approve comments</a>
+                        </div>
+                        <div class="card-footer">
+                            
+                            <!-- Number of comments not approved -->
+                            {% with post.comments.all|comments_not_approved as comments %}
+                                {% if comments.count == 0 %}
+                                    <p>No comments to the post to approve</p>
+                                {% elif comments.count == 1 %}
+                                    <p><strong>{{comments.count}} Comment to approve</strong></p>
+                                {% else %}
+                                    <p><strong>{{comments.count}} Comments to approve</strong></p>
+                                {% endif %}
+                            {% endwith%}
+
+                            <!-- Number of comments of comments not approved -->
+                            {% with post.comments2.all|comments_not_approved as comments %} 
+                                {% if comments.count == 0 %}
+                                    <p>No comments of comments to approve</p>
+                                {% elif comments.count == 1 %}
+                                    <p><strong>{{comments.count}} Comment of comment to approve</strong></p>
+                                {% else %}
+                                    <p><strong>{{comments.count}} Comments of comments to approve</strong></p>
+                                {% endif %}
+                            {% endwith%}
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

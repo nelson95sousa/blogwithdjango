@@ -1,0 +1,299 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ blogpost.title }}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/blog/post.css' %}">
+{% endblock %}
+
+{% block body %}
+
+
+<div id="carouselExampleCaptions" class="carousel slide" >
+        
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+
+            <img src="{{ blogpost.post_image.url }}" class="d-block w-100" alt="...">
+                            
+        </div>
+    </div>
+</div>
+
+<div class="main-div">
+    <h1 class= "blog-title"><strong>{{blogpost.title}}</strong></h1>
+</div>
+                
+<div class="ctn ctn-post container">
+    <a class="btn btn-submit submit-comment" href="{% url 'blog:index' %}">Blog</a>
+    {{ blogpost.text|safe }}
+</div>
+
+<div class="ctn ctn-comments-title">
+    <h2 class="comments-title">Comments</h2>
+</div>
+<div class="ctn ctn-comments ">
+    {% if messages %}
+        <ul class="messages msg-cmt-submited">
+            {% for message in messages %}
+                <p>{{ message|safe }}</p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if blogpost.comments.count != 0  %}
+        {% for comment in blogpost.comments.all %}
+            {% if comment.approved_comment %}
+                <div class="row row-comment">
+                    <div class="col col-prof-img col-3 col-md-1">
+
+                        {% if comment.user.profile_pic %}
+                                
+                        <img class="display-user-picture" src="{{comment.user.profile_pic.url}}" alt="">
+                                
+                        {% else %}
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                            </svg>
+                            
+                        {% endif %}
+                    </div>
+
+                    <div class="col col-cmt-2 col-9 col-md-11 ">
+                        <div class="row div-comment">
+                            <p class="comment-user-name"><strong>{{comment.user.first_name}} {{comment.user.last_name}}</strong></p>
+                            <p class="comment-text">{{ comment.comment|safe|linebreaks }}</p>
+                            <p class="comment-time">{{ comment.created_date|date:"d M Y"}} - {{ comment.created_date|time:"H:i"}}</p>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                
+                                {% if user.is_authenticated %}
+                                    <!-- IF USER LOGED IN - ADD COMMENT BUTTON -->
+                                    <button class="btn btn-add-cmt" type="button" onclick='getCmt(this)' data-movie-id="add_comment_{{ comment.pk }}" value="False">add comment</button>
+                                    <!-- If there are comments -->
+                                    {% if comment.comment2.count != 0 %}
+                                        
+                                        {% for comment2 in comment.comment2.all|slice:":1" %}
+                                            <!-- If there are approved comments -->
+                                            {% if comment2.approved_comment == True %}
+                                                {% if forloop.counter > 0 %}
+                                                    
+                                                    <button onclick=getDiv(this) class="btn btn-see-cmts" type="button" data-movie-id="{{ comment.pk }}" value="False">see more</button>
+                                                
+                                                {% endif %}
+                                            {% endif %}
+
+                                            <!-- If there are no approved comments -->
+                                            {% if comment2.approved_comment == False %}
+                                                <!-- And the user is the user logged in -->
+                                                {% if request.user == comment2.user %}
+                                                
+                                                    <button onclick=getDiv(this) class="btn btn-see-cmts" type="button" data-movie-id="{{ comment.pk }}" value="False">see more</button>
+                                                    
+                                                {% endif %}
+                                            {% endif %}
+
+                                        {% endfor %}
+                                        
+                                    {% endif %}
+
+                                {% else %}
+
+                                <!-- IF APPROVED COMMENTS OF COMMENT THEN SHOW BUTTON TO SHOW COMMENTS -->
+                                    {% for comment2 in comment.comment2.all|slice:":1" %}
+                                        {% if comment2.approved_comment %}
+                                            {% if forloop.counter > 0 %}
+                                                
+                                                <button onclick=getDiv(this) class="btn btn-see-cmts" type="button" data-movie-id="{{ comment.pk }}" value="False">see more</button>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                        
+                                {% endif %} 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row cmt-of-cmt" id={{comment.pk}}>
+                    {% for comment2 in comment.comment2.all %}
+                        {% if comment2.approved_comment %}               
+                            
+                            <div class="row row-comment2">
+                                <div class="col col-prof-img col-3 col-md-1">
+                                    <!-- col-3 col-md-1 -->
+                                    {% if comment2.user.profile_pic %}
+                                            
+                                    <img class="display-user-picture" src="{{comment2.user.profile_pic.url}}" alt="">
+                                        
+                                    {% else %}
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                        </svg>
+                                        
+                                    {% endif %}
+                                </div>
+
+                                <div class="col col-cmt-2 col-8 col-md-11 div-comment">
+                                    <!-- col-8 col-md-11 -->
+                                    <p class="comment-user-name"><strong>{{comment2.user.first_name}} {{comment2.user.last_name}}</strong></p>
+                                    <p class="comment-text">{{ comment2.text|safe|linebreaks }}</p>
+                                    <p class="comment-time">{{ comment2.created_date|date:"d M Y"}} - {{ comment2.created_date|time:"H:i"}}</p>
+                                    <!-- {{ value|date:"D d M Y" }} {{ value|time:"H:i" }} -->
+                                </div>
+                                
+                            </div>
+                        {% else %}
+
+                            {% if request.user == comment2.user %}
+                                <div class="row row-comment2">
+                                    <div class="col col-1">
+            
+                                        {% if comment2.user.profile_pic %}
+                                                
+                                        <img class="display-user-picture" src="{{comment2.user.profile_pic.url}}" alt="">
+                                                
+                                            {% else %}
+                                                
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                                </svg>
+                                                
+                                            {% endif %}
+                                    </div>
+                                    
+                                    <div class="col col-11 div-comment">
+                                        <p class="comment-waiting-approval">Your comment is waiting approval!</p>
+                                        <p class="comment-user-name"><strong>{{comment2.user.first_name}} {{comment2.user.last_name}}</strong></p>
+                                        <p class="comment-text">{{ comment2.text|safe|linebreaks }}</p>
+                                        <!-- <p class="comment-time">{{ comment.created_date|date:"d M Y"}} - {{ comment.created_date|time:"H:i"}}</p> -->
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                    <!-- ADD A COMMENT TO A COMMENT -->
+                    
+                    {% if user.is_authenticated %}
+                        <div class="row row-comment2 add-comment add-cmt-cmt" id="add_comment_{{comment.pk}}">
+                            
+                            <div class="col col-1">
+                
+                                {% if user.profile_pic %}
+                                        
+                                <img class="display-user-picture" src="{{user.profile_pic.url}}" alt="">
+                                        
+                                    {% else %}
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                        </svg>
+                                        
+                                    {% endif %}
+                            </div>
+                            <div class="col col-11 div-comment">
+                                
+                                <p class="comment-user-name"><strong>{{user.get_full_name}}</strong></p>
+                                
+                                <form  method="post">
+                                
+                                    {% csrf_token %}
+                                    <div class="input-row row-add-comment">
+                                        {{form_reply.text}}
+                                    <input type="hidden" name="comment_id" value="{{comment.pk}}">
+                                    <input type="hidden" name="post_id" value="{{blogpost.pk}}">
+                                    <input type="hidden" name="form_type" value="cmt-cmt">
+                                        <button class="btn btn-submit submit-comment" name="comment-comment" type="submit" >add comment</button>
+                                    </div>
+                                    
+                                
+                                </form>
+                            
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% else %}
+
+                {% if request.user == comment.user %}
+                    <div class="row row-comment">
+                        <div class="col col-1">
+
+                            {% if comment.user.profile_pic %}
+                                    
+                            <img class="display-user-picture" src="{{comment.user.profile_pic.url}}" alt="">
+                                    
+                                {% else %}
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                    </svg>
+                                    
+                                {% endif %}
+                        </div>
+                        
+                        <div class="col col-11 div-comment">
+                            <p class="comment-waiting-approval">Your comment is waiting approval!</p>
+                            <p class="comment-user-name"><strong>{{comment.user.first_name}} {{comment.user.last_name}}</strong></p>
+                            <p class="comment-text">{{ comment.comment|safe|linebreaks }}</p>
+                            <!-- <p class="comment-time">{{ comment.created_date|date:"d M Y"}} - {{ comment.created_date|time:"H:i"}}</p> -->
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {%else%} 
+        <p>Be the first one commenting this post!</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <!-- ADD A COMMENT TO THE POST -->
+        <div class="row row-comment add-comment">
+            <div class="col col-1">
+
+                {% if user.profile_pic %}
+                        
+                <img class="display-user-picture" src="{{user.profile_pic.url}}" alt="">
+                        
+                    {% else %}
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                        </svg>
+                        
+                    {% endif %}
+            </div>
+            <div class="col col-11 div-comment">
+                
+                <p class="comment-user-name"><strong>{{user.get_full_name}}</strong></p>
+                            
+                <form  method="POST">
+                    {% csrf_token %}
+                    <div class="input-row row-add-comment">
+                        <!-- <label for="comment" class="register-input" ></label> -->
+                        {{form.comment}}
+                        <input type="hidden" name="form_type" value="cmt-pst">
+                        <button class="btn btn-submit submit-comment" name="comment-post" type="submit">add comment</button>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+    {%else%}
+    <div class="row row-comment add-comment">
+        <p><a class="login-link" href="{% url 'accounts:login'%}">Login</a> to write a comment...</p>
+    </div>
+    {% endif%}  
+  
+</div>
+
+<script src="{% static 'JS/accounts/edit_profile.js' %}"></script>
+{% endblock %}

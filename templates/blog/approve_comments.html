@@ -1,0 +1,182 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Approve Comments
+{% endblock %}
+
+{% block body %}
+    
+<div class="main-div">
+    <h1 class= "main-title"><strong>Approve Comments</strong></h1>
+</div>
+    
+    <div class="ctn ctn-blog">
+        <a class="btn btn-submit submit-comment" href="{% url 'blog:post_comments' %}">back</a>
+        <div class="card h-100">
+            <img src="{{ blogpost.post_image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title">{{ blogpost.title }}</h4>
+                <p class="card-text">{{ blogpost.label|safe|striptags }}</p>
+            </div>
+        </div>
+
+        <div class="row row-title-cmt">
+            <div class="col-6">
+                <h2>Comments to Post</h2>
+                {% if cmts_not_approved.count == 0 %}   
+                    <p>There are no comments to the post to approve!</p>
+                {% endif %}
+            </div>
+        </div>
+                
+        {% for comment in cmts_not_approved %}
+                       
+            <div class="col-12 comment-approve-row">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="ctn row">
+                            
+                            <div class="col col-2 user-profile-image">
+                                
+                                {% if comment.user.profile_pic %}
+                                        
+                                <img class="display-user-picture" src="{{comment.user.profile_pic.url}}" alt="">
+                                        
+                                {% else %}
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                    </svg>
+                                    
+                                {% endif %}
+                            </div>
+        
+                            <div class="col col-10 div-comment">
+                                <p class="comment-user-name"><strong>{{comment.user.get_full_name}}</strong></p>
+                                <p class="comment-text">{{ comment.comment|safe|linebreaks }}</p>
+                                <p class="comment-time">{{ comment.created_date|date:"d M Y"}} - {{ comment.created_date|time:"H:i"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        
+                        <div class="row row-approve-delete">
+                            <div class="col-6">
+                                <form method="post">
+                                    {% csrf_token%}
+                                    
+                                    <input type="hidden" name="form_type" value="cmt-pst">
+                                    <input type="hidden" name="comment_pk" value="{{comment.pk}}">
+                                    <button class="btn btn-submit submit-comment" type="submit">approve</button>
+                                </form>
+                            </div>       
+                            <div class="col-6">
+                                <a class="nav-link" href="{% url 'blog:delete_comment_post' comment.pk %}">delete comment</a>
+                            </div>                                
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}   
+                        
+
+
+        
+        <div class="row row-title-cmt">
+            <div class="col-6">
+                <h2>Comments of comments</h2>
+                {% if cmts_cmts_not_approved.count == 0 %}   
+                    <p>There are no comments of comments to approve!</p>
+                {% endif %}
+            </div>
+        </div>                
+        
+            
+        {% for comment in cmts_cmts_not_approved %}
+        
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6 comment-approve-row">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="ctn row">
+                                    
+                                    <div class="col col-3 user-profile-image">
+                                        
+                                        {% if comment.comment.user.profile_pic %}
+                                                
+                                        <img class="display-user-picture" src="{{comment.comment.user.profile_pic.url}}" alt="">
+                                                
+                                        {% else %}
+                                            
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                            </svg>
+                                            
+                                        {% endif %}
+                                    </div>
+                
+                                    <div class="col col-9 div-comment">
+                                        <p class="comment-user-name"><strong>{{comment.comment.user.get_full_name}}</strong></p>
+                                        <p class="comment-text">{{ comment.comment.comment|safe|linebreaks }}</p>
+                                        <p class="comment-time">{{ comment.comment.created_date|date:"d M Y"}} - {{ comment.comment.created_date|time:"H:i"}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6 comment-approve-row">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="ctn row">
+                                    
+                                    <div class="col col-4">
+                                
+                                        {% if comment.user.profile_pic %}
+                                                
+                                        <img class="display-user-picture" src="{{comment.user.profile_pic.url}}" alt="">
+                                                
+                                        {% else %}
+                                            
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                            </svg>
+                                            
+                                        {% endif %}
+                                    </div>
+                
+                                    <div class="col col-8 div-comment">
+                                        <p class="comment-user-name"><strong>{{comment.user.get_full_name}}</strong></p>
+                                        <p class="comment-text">{{ comment.text|safe|linebreaks }}</p>
+                                        <p class="comment-time">{{ comment.created_date|date:"d M Y"}} - {{ comment.created_date|time:"H:i"}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-6">
+                                
+                                <div class="row row-approve-delete">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            {% csrf_token%}
+                                            
+                                            <input type="hidden" name="form_type" value="cmt-cmt">
+                                            <input type="hidden" name="comment_pk" value="{{comment.pk}}">
+                                            <button class="btn btn-submit submit-comment" type="submit">approve</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <a class="nav-link" href="{% url 'blog:delete_comment_comment' comment.pk %}">delete comment</a>
+                                    </div>                                        
+                                </div>                                
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

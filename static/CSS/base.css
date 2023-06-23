@@ -1,0 +1,560 @@
+/* BASE */
+
+/* mouse selection */
+    ::selection{
+        background-color: var(--green);
+    }
+
+/* COLOURS */
+    :root{
+        --dark_green: #092E20;
+        --green: #27AB78;
+        --pale_green: #8ABB91;
+        --yellow: #FFE792;
+        --white: #FFFFFF;
+    }
+
+/* FONT */
+    *{
+        font-family: 'Roboto Slab', serif;
+    }
+/**/
+
+/* BUTTONS */
+    .btn-submit{
+        color: var(--white);
+        background-color: var(--dark_green);
+    }
+    .update-submit{
+        color: var(--white);
+        background-color: var(--dark_green);
+        border: none;
+        }
+    
+    .update-cancel{
+        color: var(--dark_green) ;
+        background-color: var(--white);
+        border: none;
+        }
+/*  */
+
+/* HEADER */
+    .ctn-head{
+        background-color: var(--pale_green);
+        color: var(--white);
+        text-align: center;
+    }
+    #head-txt{
+        margin-bottom: 0%;
+
+    }
+/**/
+
+/* NAVBAR */
+
+    .navbar{
+        background-color: var(--dark_green);
+        
+    }
+
+    /* Logo */
+        .navbar-brand{
+            width: 170px;  
+            margin-left: 28px;
+            margin-right: 58px;
+        }
+        .logo-img{
+            width: inherit;
+        }
+
+    /* Link buttons ('about','shop','blog','contact',icons) */
+        .navbar-buttons{
+            padding-left: 28px;
+            margin-right: 28px;
+        }
+
+        .col-nav-link{
+            /* padding: 0px; */
+            min-width: fit-content;
+            font-weight: 600;
+            /* align-self: center; */
+        }
+
+        /* .row-icons{
+            padding-left: 11px;
+        } */
+
+        .nav-link-icon{
+            width: fit-content;
+        }
+
+        .nav-link h5{
+            font-weight: 600;
+        
+        }
+
+        .nav-link-user-name{
+            font-size: 1.1em
+        }
+
+        .nav-link,.nav-link:focus{
+            color: var(--yellow);
+        }
+        .nav-link-logout{
+            padding-top: 9px;
+            font-size: 1.1em
+        }
+        /* 'focus' allows the color after click to be the same as the initial one. */
+
+        .nav-link:hover { 
+            color: var(--pale_green); 
+        }
+
+        .nav-dropdown-btn{
+            color: var(--yellow);
+            border: none;
+        }
+
+    /* Toggler */
+        .navbar-toggler,.navbar-toggler:focus,.navbar-toggler:active{
+            outline: none;
+            box-shadow: none;
+            border: none;
+        }
+        .navbar-toggler,.navbar-toggler:focus,.navbar-toggler:active{
+            color: var(--green);
+        }
+        .navbar-toggler:hover{
+            color: var(--pale_green);
+        }
+
+/**/
+
+
+/* FOOTER */
+    footer{
+        padding-top: 20px;
+    }
+
+    /* FOOTER 1 */
+        /* COL ONE */
+            .row-col-one{
+                padding-bottom: 20px;
+            }
+            .logo-col,.icons-col{
+                align-self: center;
+            }
+            .logo-col{
+                padding-left: 45px;
+                width: max-content;
+            }
+            
+            .icons-col{
+                padding-left: 25px;
+                width: min-content;
+            }
+            .logo-footer{
+                border-radius: 50%;
+                height: auto;
+                width: 100px;
+            }
+
+        /* COL 2 */
+            /* Link buttons ('Facebook','Twitter','Instagram','Linkedin') */
+            .row-icon{
+                /* align the icons left/right */
+                width: 90px;
+            }
+            .foot-link, .foot-link:focus{
+                color: var(--dark_green);
+            }
+            .foot-link:hover { 
+                color: var(--pale_green); 
+            }
+            .foot-link{
+                padding: 10px;
+            }
+
+            .col-items{
+                align-self: center;
+            }
+            .col-foot-link{
+                text-align: center;
+                padding: 0px;           
+            }
+            .col-left{
+                text-align: right;
+                margin: 5px;
+                margin-right: 0px;            
+            }
+            .col-right{
+                text-align: left;
+                margin: 5px;
+                margin-left: 0px;
+            }
+
+    /**/
+
+    /* FOOTER 2 */
+        .ctn-footer{
+            background-color: var(--dark_green);
+            color: var(--white);
+            margin-top: 30px;
+            font-size: small;
+        }
+        .row-footer{
+            margin: 0px;
+        }
+        .text-one,.text-two{
+            margin-bottom: 0%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .ctn-footer .row{
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+/**/
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* MAIN TITLE - CAROUSSEL SETTINGS */
+.main-div{
+    background-color: var(--pale_green);
+    height: 300px;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.main-title{
+    color: var(--white);
+    font-size: 6vw;
+}
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+/* PROFILE */
+
+    .ctn-profile{
+        color: var(--pale_green);
+        padding-top: 30px;
+    }
+    
+    /* .ctn-profile-img{
+        text-align: center;
+    } */
+
+    /* default image */
+        .bi-profile{
+            background-color: var(--white);
+            color: var(--dark_green);
+            border-radius: 50%;
+            border: var(--dark_green) 1px solid;
+        }
+        
+    /* PROFILE image */
+        .profile-pic{
+
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+    /* PROFILE NAME */
+        .profile-user-name{
+            padding-top: 15px;
+        }
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* EDIT PROFILE */
+    .ctn-edit-prof{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color:var(--pale_green);
+    }
+    .edit-prof-form{
+        padding-left: 44px;
+    }
+    .a-update-profile{
+        color: var(--white);
+    }
+
+    .a-update-profile:hover{
+        color: var(--pale_green);
+    }
+
+    .edit-profile-pic{
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+    #file-upload {
+        /* color: var(--dark_green);
+        background-color: var(--white);
+        border: none; */
+        display: none;
+    }
+    
+    #display-img-upload{
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: none;
+    }
+/**/
+
+/* EDIT PROFILE */
+    .ctn-del-prof{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color:var(--pale_green);
+    }
+/**/
+
+/* PASSWORD RESET*/
+.ctn-reset-password{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color:var(--pale_green);
+    padding-left: 57px;
+}
+/**/
+
+/* PASSWORD RESET CONFIRM*/
+    .ctn-reset-password-conf{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color:var(--pale_green);
+        padding-left: 57px;
+    }
+/**/
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* BLOG INDEX */
+
+    .ctn-blog{
+        padding-left: 150px;
+        padding-right: 150px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        color: var(--pale_green);
+    }
+
+    .card-img-top {
+        width: auto;
+        height: 15vw;
+        /* object-fit: cover; */
+    }
+
+/**/
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* BLOG POST */
+
+    .ctn-post{
+        padding-left: 125px;
+        padding-right: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        color: var(--pale_green);
+    }
+
+    .display-user-picture{
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    /* COMMENTS */
+
+    .comments-title{
+        padding-bottom: 10px;
+    }
+
+    .msg-cmt-submited{
+        color: var(--green);
+    }
+    .ctn-comments-title{
+
+        width: 100%;
+        margin: 0px;
+        padding-left: 190px;
+        padding-right: 50px;
+        padding-top: 50px;
+        padding-bottom: 10px;
+        color: var(--pale_green);
+        background-color: rgb(9, 46, 32, 0.1);
+    }
+
+    .ctn-comments{
+
+        width: 100%;
+        margin: 0px;
+        padding-left: 190px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        color: var(--dark_green);
+        background-color: rgb(9, 46, 32, 0.1);
+    }
+
+    .div-comment{
+        background-color:rgba(39, 171, 120, 0.5);
+        /* min-width: auto; */
+        width: fit-content;
+        border-end-end-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .comment-waiting-approval{
+        color: var(--yellow);
+    }
+
+    .comment-approve-row{
+        border: var(--dark_green) solid 1px;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+    .user-profile-image{
+        max-width: fit-content;
+    }
+    .row-approve-delete{
+        padding-top: 5px;
+    }
+    .row-comment{
+        margin-bottom: 20px;
+    }
+
+    /* #cmt-of-cmt{
+        display: none;
+    } */
+
+    .add-comment{
+        bottom: 0px;
+        position: sticky;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    .comment-user-name{
+        color: var(--dark_green);
+    }
+
+    .div-comment p{
+        margin-bottom: 0px;
+    }
+
+    .comment-time{
+        color: var(--white);
+        text-align: end;
+        font-size: 0.7em;
+    }
+
+    .row-comment2{
+        margin-top: 20px;
+        margin-left: 20px;
+        
+    }
+    .add-cmt-cmt{
+        display: none;
+    }
+
+    .cmt-of-cmt{
+        display:none;
+    }
+
+    .row-add-comment{
+        text-align: left;
+    }
+
+    #id_comment{
+        width: 300px;
+        color: var(--pale_green);
+        border-radius: 4px;
+        border: 1px solid var(--pale_green);
+    }
+
+    #id_comment:focus,#id_comment:focus{
+        outline: none;
+        border: 1px solid var(--pale_green);
+        background-color: var(--white);
+    }
+
+    .submit-comment{
+        color: var(--white);
+        background-color: var(--dark_green);
+        border: none;
+        margin-bottom: 10.667px;
+        }
+
+    .login-link,.login-link:focus{
+        color: var(--dark_green);
+        text-decoration: none;
+    }
+    
+    .login-link:hover { 
+        color: var(--pale_green);
+    }
+
+    /* BUTTONS TO SEE/ADD COMMENTS */
+    
+    .btn-see-cmts, .btn-add-cmt{
+        padding-left: 0px;
+        padding-top: 0px;
+        vertical-align: top;
+        font-size: smaller;
+        color: var(--dark_green);
+        border: none;
+    }
+   
+/**/
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* CREATE POST */
+    .create-post-form{
+        padding-left: 44px;
+    }
+/**/
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* EDIT POST */
+    .ctn-edit-post{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color:var(--pale_green);
+    }
+    .edit-post-form{
+        padding-left: 44px;
+    }
+/**/
+/* //////////////////////////////////////////////////////////////////// */
+
+/* APPROVE COMMENTS */
+    .row-title-cmt{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+/*  */
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* SHOP INDEX */
+
+    .ctn-shop{
+        padding-left: 150px;
+        padding-right: 150px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        color: var(--pale_green);
+    }
+
+/**/

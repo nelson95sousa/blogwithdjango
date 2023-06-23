@@ -1,0 +1,112 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block body %}
+
+    <div class="main-div">
+        <h1 class= "main-title"><strong>Edit Profile</strong></h1>
+    </div>
+
+    <div class="container ctn-edit-prof">
+
+        <!-- UPDATE FORM -->
+        <form class="edit-prof-form" enctype="multipart/form-data" method="post">
+            {% csrf_token %} 
+
+            {% if form.errors %}
+                <div class="alert alert-message">
+                    
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                        
+                            <li>{{ error }}</li>
+                        
+                        {% endfor %}
+                    {% endfor %}
+                    
+                </div>
+            {% endif %}
+
+            <div class="input-row">
+                <label for="first_name" class="register-input" >first name</label>
+                <p>{{form.first_name}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="last_name" class="register-input">last name</label>
+                <p>{{form.last_name}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="email" class="register-input">email</label>
+                <p>{{form.email}}</p>
+            </div>
+
+            <div class="input-row">
+                <label for="birth_date" class="register-input" >date of birth</label>
+                <p>{{form.birth_date}}</p>
+            </div>
+
+            <div class="input-row">
+                
+                <label for="">profile picture</label>
+                
+                <div>
+                    
+                    {% if user.profile_pic %}
+                        
+                        <img class="edit-profile-pic" src="{{ user.profile_pic.url }}" alt="profile_image">
+                        
+                    {% else %}
+                         
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person bi-profile" viewBox="0 1 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                        </svg>
+                        
+                    {% endif %}
+                    
+                                       
+
+                    <!-- check for input type -->
+                    {% if form.profile_pic.field.widget.input_type == 'file'%}
+                        <label id="file-upload-label" for="file-upload" class="btn btn-submit">select new image</label>
+                        <input id="file-upload" accept="image" type="file" name="{{ form.profile_pic.name }}" onchange = "read(this)"/>
+                        
+                        <br>
+                        <img id="display-img-upload">
+                    {% endif %}
+
+                    {% if user.profile_pic %}
+
+                        <a class="nav-link" href="{% url 'accounts:delete_profile_picture' %}">delete image</a>
+                    {% endif %}
+                    
+                    
+                    
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn btn-submit update-submit" type="submit">update account</button>
+
+            <a class="btn btn-submit update-cancel" href="{% url 'accounts:profile' %}">cancel</a>
+
+            <a class="nav-link" href="{% url 'accounts:delete_profile'%}">or delete account</a>
+
+        </form>
+
+        
+    </div>
+    
+    
+
+<script src="{% static 'JS/accounts/edit_profile.js' %}" ></script>
+
+{% endblock %}
+

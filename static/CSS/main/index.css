@@ -1,0 +1,225 @@
+.main-div{
+    background-color: var(--pale_green);
+    height: 350px;
+}
+
+.second-div{
+    background-color: var(--green);
+    height: 350px;
+    vertical-align: middle;
+}
+
+/* "BLOG" slides from the right */
+@keyframes slideInRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+/* "with Django" slides from the top */
+@keyframes toptobottom {
+    0% {
+        transform: translateY(-200px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* "BLOG WITH DJANGO" moves to the left */
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* "Blog" Title */
+#title_1{
+    position: relative;
+    left: 50%;
+    color: var(--yellow);
+    font-size: 10vw;
+    line-height: 0.85;
+    animation: 1s ease-out 0s 1 slideInRight forwards,
+    1s ease-out 1.5s 1 moveLeft forwards;
+}
+
+/* "with Django" title*/
+#title_2{
+    position: relative;
+    left: 50%;
+    color: var(--dark_green);
+    font-size: 3vw;
+    padding-left: 60px;
+    line-height: 0.85;
+    animation: 1s ease-in 0s 1 toptobottom forwards,
+                1s ease-out 1.5s 1 moveLeft forwards;
+}
+
+@media screen and (min-width: 1300px) {
+    #title_1,#title_2 {
+        padding-top: 0px;
+    }
+    .main-div{
+        padding-top: 50px;
+    }
+  }
+
+/* ______________________________________________________ */
+
+/* "Blog With Django was built using..." */
+
+/* "with Django" slides from the top */
+@keyframes toptobottom2 {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+/* Typing effect */
+@keyframes typing {
+    0% {width:0};
+    100% {width:100%};
+}
+@keyframes delayedShow {
+    to {
+      visibility: visible;
+    }
+  }
+  @keyframes delayedOpacity {
+    to {
+      opacity: 100%;
+    }
+  }
+
+.row-txt-1{
+    position: relative;
+    text-align: center;
+    color: var(--dark_green);
+    padding-top: 25px;
+    font-size: 2vw;
+
+    visibility: hidden;
+    animation: 1s ease-in 2s 1 toptobottom2 forwards,
+    0s linear 2s forwards delayedShow;
+}
+
+.img-logo{
+    object-fit: cover;
+    position: relative;
+    top: 30px;
+    width: 65px;
+    opacity: 0%;
+}
+
+#dj-logo{
+    animation: 1.5s linear 3000ms forwards delayedOpacity;
+}
+
+#pt-logo{
+    animation: 1.5s linear 3500ms forwards delayedOpacity;
+}
+
+#html-logo{
+    animation: 1.5s linear 4000ms forwards delayedOpacity;
+}
+
+#css-logo{
+    animation: 1.5s linear 4500ms forwards delayedOpacity;
+}
+
+#js-logo{
+    animation: 1.5s linear 5000ms forwards delayedOpacity;
+}
+
+/* __________________ */
+
+  /* CAROUSEL AND CARD */
+
+  .carousel-inner{
+    padding-top: 100px;
+  }
+
+  .card{
+    background-color: transparent !important;
+    border: none;
+  }
+
+  .img-fluid{
+    max-height: 150px;
+    width: auto;
+  }
+
+  .post-img{
+    text-align: center;
+  }
+
+
+
+
+
+
+
+
+/* ****************************************************************** */
+/* SMARTPHONE VIEW */
+@media screen and (max-width: 600px) {
+    #title_1,#title_2{
+        zoom: 200%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .main-div{
+        padding-top: 50px;
+    }
+
+    /* .row-txt-1{
+        display:none;
+    } */
+    #title_1,#title_2{
+        left: 0%;
+        animation: 1s ease-in 0s 1 toptobottom forwards;
+        
+    }
+
+    .img-logo{
+        object-fit: cover;
+        position: relative;
+        top: 30px;
+        width: 65px;
+        opacity: 0%;
+    }
+    
+    #dj-logo{
+        animation: 1.5s linear 2000ms forwards delayedOpacity;
+    }
+    
+    #pt-logo{
+        animation: 1.5s linear 2500ms forwards delayedOpacity;
+    }
+    
+    #html-logo{
+        animation: 1.5s linear 3000ms forwards delayedOpacity;
+    }
+    
+    #css-logo{
+        animation: 1.5s linear 3500ms forwards delayedOpacity;
+    }
+    
+    #js-logo{
+        animation: 1.5s linear 4000ms forwards delayedOpacity;
+    }
+
+    /* CAROUSEL AND CARD */
+    .carousel-inner{
+        padding-top: 25px;
+    }
+}

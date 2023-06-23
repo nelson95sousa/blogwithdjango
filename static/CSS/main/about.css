@@ -1,0 +1,89 @@
+
+
+/* ABOUT */
+
+    /* CAROUSEL */
+
+    .main-div{
+        background-color: var(--pale_green);
+        height: 300px;
+        text-align: center;
+        padding-top: 100px;
+    }
+    
+    .blog-title{
+        color: var(--white);
+        font-size: 6vw;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .blog-title{
+            zoom: 200%;
+        }
+    }
+/**/
+
+/* CONTAINER 1 */
+    /* IMAGE */
+        .ctn-about-one{
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+        .about-img-one{
+            max-height: 250px;
+            border-radius: 50%;
+        }
+        .col-about-img{
+            text-align: center;
+        }
+    /* TEXT */ 
+        .about-text-two{
+            padding-bottom: 20px;
+        }
+        .quotation-mark{
+            color: rgba(39, 171, 120, 0.5);
+        }
+        .col-text-one{
+            color: var(--pale_green);
+            align-self: center;
+            padding-top: 50px;
+        }
+        .author-name{
+            padding-top: 20px;
+        }
+/**/
+
+/* COUNTAINER 2 */
+    
+    .ctn-about-two{
+        padding-top: 100px;
+        padding-bottom: 50px;
+        background-color: var(--white);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .col-text-title{
+        padding-bottom: 20px;
+        color: var(--green);
+    }
+    .col-text-two{
+        color: var(--pale_green);
+        padding-bottom: 50px;
+        text-align: justify;
+    }
+
+    /* VALUES ROW */
+        .values-row{
+            padding-top: 75px;
+            text-align: center;
+            color: var(--green);
+        }
+        .values-icon{
+            border-radius: 50%;
+            color: var(--green);
+            background-color: #FFF;
+            margin-bottom: 20px;
+        }
+       
+/**/
+/**/

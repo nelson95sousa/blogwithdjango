@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Delete Profile
+{% endblock %}
+
+{% block body %}
+
+    <div class="main-div">
+        <h1 class= "main-title"><strong>Delete Profile</strong></h1>
+    </div>
+
+    <div class="container ctn-del-prof">
+
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete your account <strong>{{user.get_full_name}}</strong>?</p>
+            
+            <input class="btn btn-submit update-submit" type="submit" value="delete">
+        
+            <a class="btn btn-submit update-cancel" href="{% url 'accounts:edit_profile' %}">cancel</a>
+        </form>
+    
+    </div>
+{% endblock %}
